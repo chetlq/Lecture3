@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lecture3</string>
+    <string name="actor_no_oscar">No Oscar for %1$s :-(</string>
+    <string name="actor_with_oscar">And the Oscar goes to… %1$s!</string>
 </resources>

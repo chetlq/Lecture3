@@ -46,20 +46,44 @@ public class ActorListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View rowItem = inflater.inflate(R.layout.item_actor,viewGroup,false);
-        ImageView avatarView = rowItem.findViewById(R.id.avatar);
-        TextView nameView = rowItem.findViewById(R.id.name);
-        ImageView oscarView = rowItem.findViewById(R.id.oscar);
-
-        Actor actor = actors.get(i);
-        nameView.setText(actor.getName());
-        Glide.with(context).load(actor.getAvatar()).into(avatarView);
-        if (actor.isHasOscar()){
-            oscarView.setVisibility(View.VISIBLE);
+    public View getView(int i,@NonNull View convertView, @NonNull ViewGroup parent) {
+        ViewHolder holder;
+        if(convertView == null){
+            holder = onCreateViewHolder(parent);
+            convertView = holder.itemView;
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-
-
-        return rowItem;
+        onBindViewHolder(holder, i);
+        return convertView;
     }
+
+
+
+    private void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Actor actor = actors.get(position);
+        holder.nameView.setText(actor.getName());
+        Glide.with(context).load(actor.getAvatar()).into(holder.avatarView);
+        holder.oscarView.setVisibility(actor.isHasOscar()? View.VISIBLE : View.GONE);
+    }
+    private ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
+        return new ViewHolder(inflater.inflate(R.layout.item_actor, parent, false));
+    }
+
+    static class ViewHolder {
+        final View itemView;
+
+        final ImageView avatarView;
+        final TextView nameView;
+        final ImageView oscarView;
+
+        ViewHolder(@NonNull View itemView) {
+            this.itemView = itemView;
+            this.avatarView = itemView.findViewById(R.id.avatar);
+            this.nameView = itemView.findViewById(R.id.name);
+            this.oscarView = itemView.findViewById(R.id.oscar);
+        }
+    }
+
 }

@@ -22,7 +22,12 @@ public class DataUtils {
         actors.add(new Actor("Will Smith", "https://image.ibb.co/gxoUcJ/Will_Smith.jpg", false));
         actors.add(new Actor("Robert de Niro", "https://image.ibb.co/e6T6Py/Robert_de_Niro.jpg", true));
         actors.add(new Actor("Zoe Saldana", "https://image.ibb.co/i9WRPy/Zoe_Saldana.jpg", false));
+
         return actors;
+    }
+
+    public static String getActorMessage(Context context, Actor actor) {
+        return context.getString(actor.isHasOscar() ? R.string.actor_with_oscar : R.string.actor_no_oscar, actor.getName());
     }
 
 }
