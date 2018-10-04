@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,11 +23,12 @@ public class ActorListAdapter extends BaseAdapter {
     @NonNull
     private final Context context;
 
-    public ActorListAdapter(@NonNull List<Actor> actors, @NonNull LayoutInflater inflater, @NonNull Context context) {
+    public ActorListAdapter(@NonNull List<Actor> actors,  @NonNull Context context) {
         this.actors = actors;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
     }
+
 
     @Override
     public int getCount() {
@@ -42,6 +47,19 @@ public class ActorListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        View rowItem = inflater.inflate(R.layout.item_actor,viewGroup,false);
+        ImageView avatarView = rowItem.findViewById(R.id.avatar);
+        TextView nameView = rowItem.findViewById(R.id.name);
+        ImageView oscarView = rowItem.findViewById(R.id.oscar);
+
+        Actor actor = actors.get(i);
+        nameView.setText(actor.getName());
+        Glide.with(context).load("https://image.ibb.co/nKNBrd/Alicia_Vikander.jpg").into(avatarView);
+        if (actor.isHasOscar()){
+            oscarView.setVisibility(View.VISIBLE);
+        }
+
+
+        return rowItem;
     }
 }

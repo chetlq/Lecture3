@@ -14,4 +14,12 @@ public class Actor {
     public String getName() {
         return name;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public boolean isHasOscar() {
+        return hasOscar;
+    }
 }
