@@ -54,7 +54,7 @@ public class ActorListAdapter extends BaseAdapter {
 
         Actor actor = actors.get(i);
         nameView.setText(actor.getName());
-        Glide.with(context).load("https://image.ibb.co/nKNBrd/Alicia_Vikander.jpg").into(avatarView);
+        Glide.with(context).load(actor.getAvatar()).into(avatarView);
         if (actor.isHasOscar()){
             oscarView.setVisibility(View.VISIBLE);
         }
