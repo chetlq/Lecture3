@@ -54,9 +54,9 @@ public class ActorRecyclerAdapter extends RecyclerView.Adapter<ActorRecyclerAdap
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        final ImageView avatarView;
-        final TextView nameView;
-        final ImageView oscarView;
+        private final ImageView avatarView;
+        private final TextView nameView;
+        private final ImageView oscarView;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +64,12 @@ public class ActorRecyclerAdapter extends RecyclerView.Adapter<ActorRecyclerAdap
             nameView = itemView.findViewById(R.id.name);
             oscarView = itemView.findViewById(R.id.oscar);
         }
+
+//        void bind(Actor actor) {
+//            imageLoader.load(actor.getAvatarUrl()).into(avatarView);
+//            nameView.setText(actor.getName());
+//            oscarView.setVisibility(actor.hasOscar() ? View.VISIBLE : View.GONE);
+//        }
     }
 
 }
