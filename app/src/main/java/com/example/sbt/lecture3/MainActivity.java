@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(new ActorRecyclerAdapter(DataUtils.generateActors(), this));
+        recyclerView.setAdapter(new NewsRecyclerAdapter(DataUtils.generateActors(), this));
 
 //        ListView listView = findViewById(R.id.list_view);
 //        listView.setAdapter(new ActorListAdapter(DataUtils.generateActors(),this));

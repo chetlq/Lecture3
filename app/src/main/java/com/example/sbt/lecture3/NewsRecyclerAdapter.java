@@ -2,7 +2,6 @@ package com.example.sbt.lecture3;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.sbt.lecture3.data.NewsItem;
 
+import java.util.Date;
 import java.util.List;
 
-public class ActorRecyclerAdapter extends RecyclerView.Adapter<ActorRecyclerAdapter.ViewHolder> {
+public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
     @NonNull
-    private final List<Actor> actors;
+    private final List<NewsItem> news;
     @NonNull
     private final LayoutInflater inflater;
     @NonNull
@@ -26,8 +27,8 @@ public class ActorRecyclerAdapter extends RecyclerView.Adapter<ActorRecyclerAdap
     @NonNull
     private final RequestManager imageLoader;
 
-    public ActorRecyclerAdapter(@NonNull List<Actor> actors,  @NonNull Context context) {
-        this.actors = actors;
+    public NewsRecyclerAdapter(@NonNull List<NewsItem> news, @NonNull Context context) {
+        this.news = news;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
 
@@ -68,20 +69,27 @@ public class ActorRecyclerAdapter extends RecyclerView.Adapter<ActorRecyclerAdap
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView avatarView;
-        private final TextView nameView;
-        private final ImageView oscarView;
+        private final TextView news_category;
+        private final TextView title;
+        private final TextView preview_text;
+        private final TextView date;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             avatarView = itemView.findViewById(R.id.avatar);
-            nameView = itemView.findViewById(R.id.name);
-            oscarView = itemView.findViewById(R.id.oscar);
+            news_category = itemView.findViewById(R.id.news_category);
+            title = itemView.findViewById(R.id.title);
+            preview_text = itemView.findViewById(R.id.preview_text);
+            date = itemView.findViewById(R.id.date);
         }
 
-        void bind(Actor actor) {
-            imageLoader.load(actor.getAvatar()).into(avatarView);
-            nameView.setText(actor.getName());
-            oscarView.setVisibility(actor.isHasOscar() ? View.VISIBLE : View.GONE);
+        void bind(NewsItem news) {
+            imageLoader.load(news.getImageUrl()).into(avatarView);
+            news_category.setText(news.getCategory().getName());
+            title.setText(news.getTitle());
+            preview_text.setText(news.getPreviewText());
+            date.setText(String.valueOf(news.getPublishDate()) );
+
         }
     }
 

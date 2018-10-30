@@ -1,38 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView android:id="@+id/card_view"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_height"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="#dad6d7"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="5dp"
+    card_view:cardUseCompatPadding="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/item_padding"
-
-    >
-
+    android:padding="5dp" >
     <ImageView
         android:id="@+id/avatar"
         android:layout_width="@dimen/avatar_size"
         android:layout_height="@dimen/avatar_size"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/avatars" />
+        android:scaleType="fitCenter"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/oscar"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:layout_toLeftOf="@id/avatar">
+    <TextView
+        android:id="@+id/news_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:text="SDFGSDF SDFGSDFG SDF GSDF GSDFGS  "/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_below="@id/news_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:maxLines="2"
+        android:layout_marginTop="5dp"
+        android:text="1111 11111 1111111 11111 "/>
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginEnd="@dimen/name_horizontal_padding"
-        android:layout_marginStart="@dimen/name_horizontal_padding"
-        android:gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:text="@tools:sample/full_names" />
-
-    <ImageView
-        android:id="@+id/oscar"
+        android:id="@+id/preview_text"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/oscar_height"
-        android:contentDescription="@null"
-        android:src="@drawable/oscar"
-        android:visibility="gone"
-        tools:visibility="visible" />
-</LinearLayout>
+        android:layout_height="50dp"
+        android:layout_below="@id/title"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:maxLines="3"
+
+        android:text="ямбды мы можем передать логику отложенных вычислений, которые будут выполнены при вызове `invoke()` у лямбды (или аналогичного метода). Во `fromArray` передаётся не лямбда, а значение, возвращённое из метода `generateNews`. Которое вычисляется сразу при его вызове, т.е так же синхронно с `fromArray`, `filter` и прочими методами в цепочке. А значит, если вы вставили внутри `Thread.sleep`, то он выполнится на том потоке, на котором инициализируется цепочка Rx-вызовов, т.е в нашем случае на UI.
+
+Пример: разница такая же, как если бы вместо установки `View.ClickListener` с методом `onClick` вызывали бы сам `onClick`. Он бы вызвался сразу, в процессе инициализации активити и поиска вьюшек, а не тогда, когда бы реально была нажата кнопка ( =="/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/preview_text"
+        android:textColor="@color/gray"
+        android:textSize="10sp"
+        android:text="33333333 3333333 33333333"/>
+</RelativeLayout>
+
+</RelativeLayout>
+</android.support.v7.widget.CardView>
