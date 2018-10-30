@@ -50,7 +50,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.bind( actors.get(position));
+        holder.bind( news.get(position));
 //        holder.nameView.setText(actor.getName());
 //        Glide.with(context).load(actor.getAvatar()).into(holder.avatarView);
 //        holder.oscarView.setVisibility(actor.isHasOscar()? View.VISIBLE : View.GONE);
@@ -63,7 +63,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public int getItemCount() {
-        return actors.size();
+        return news.size();
     }
 
 
