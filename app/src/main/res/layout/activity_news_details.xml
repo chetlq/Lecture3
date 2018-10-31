@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+      >
+        <ImageView
+            android:id="@+id/avatar1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/avatar_size"
+
+            android:src="@drawable/oscar"/>
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_below="@id/avatar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:maxLines="2"
+            android:layout_marginTop="5dp"
+            android:text="1111 11111 1111111 11111 "/>
+    <TextView
+        android:id="@+id/date1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/title1"
+        android:textColor="@color/gray"
+        android:textSize="10sp"
+        android:text="33333333 3333333 33333333"/>
+        <TextView
+            android:id="@+id/full_text"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/date1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:maxLines="3"
+
+            android:text="ямбды мы можем передать логику отложенных вычислений, которые будут выполнены при вызове `invoke()` у лямбды (или аналогичного метода). Во `fromArray` передаётся не лямбда, а значение, возвращённое из метода `generateNews`. Которое вычисляется сразу при его вызове, т.е так же синхронно с `fromArray`, `filter` и прочими методами в цепочке. А значит, если вы вставили внутри `Thread.sleep`, то он выполнится на том потоке, на котором инициализируется цепочка Rx-вызовов, т.е в нашем случае на UI.
+
+Пример: разница такая же, как если бы вместо установки `View.ClickListener` с методом `onClick` вызывали бы сам `onClick`. Он бы вызвался сразу, в процессе инициализации активити и поиска вьюшек, а не тогда, когда бы реально была нажата кнопка ( =="/>
+
+
+    </RelativeLayout>

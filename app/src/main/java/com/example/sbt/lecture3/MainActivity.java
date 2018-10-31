@@ -21,21 +21,16 @@ import com.example.sbt.lecture3.data.DataUtils;
 import com.example.sbt.lecture3.data.NewsItem;
 
 public class MainActivity extends AppCompatActivity {
-    DisplayMetrics metrics ;//= this.getResources().getDisplayMetrics();
-    private NewsRecyclerAdapter adapter;
-    private NewsItem news;
-//    private final AdapterView.OnItemClickListener clickListener = (AdapterView<?> adapterView, View view, int position, long id) -> {
-//        news = adapter.getItemId(position);
-//        String clickMessage = DataUtils.getActorMessage(this, actor);
-//
-//        Toast.makeText(this, clickMessage, Toast.LENGTH_SHORT).show();
-//    };
+    DisplayMetrics metrics ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actor_recycler);
         metrics = this.getResources().getDisplayMetrics();
+        Intent intent = new Intent(this, NewsDetailsActivity.class);
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -51,16 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        recyclerView.setAdapter(new NewsRecyclerAdapter(DataUtils.generateNews(), this, new NewsRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(NewsItem news) {
-                Log.d("TAG", "News " + news.getTitle());
-            }
+        recyclerView.setAdapter(new NewsRecyclerAdapter(DataUtils.generateNews(), this, news -> {
+            Log.d("TAG", "News " + news.getTitle());
+            intent.put .putExtra("key",news);
+            startActivity(intent);
         }));
 
-//        ListView listView = findViewById(R.id.list_view);
-//        listView.setAdapter(new ActorListAdapter(DataUtils.generateActors(),this));
-//        listView.setOnItemClickListener(clickListener);
+
     }
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
