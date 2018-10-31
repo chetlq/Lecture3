@@ -18,6 +18,11 @@ import java.util.Date;
 import java.util.List;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
+    public interface OnItemClickListener {
+        void onItemClick(NewsItem news);
+    }
+    private final OnItemClickListener listener;
+
     @NonNull
     private final List<NewsItem> news;
     @NonNull
@@ -27,7 +32,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @NonNull
     private final RequestManager imageLoader;
 
-    public NewsRecyclerAdapter(@NonNull List<NewsItem> news, @NonNull Context context) {
+    public NewsRecyclerAdapter(@NonNull List<NewsItem> news, @NonNull Context context, @NonNull OnItemClickListener listener) {
         this.news = news;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
@@ -38,6 +43,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
                 .centerCrop();
         this.imageLoader = Glide.with(context).applyDefaultRequestOptions(imageOption);
 
+        this.listener = listener;
     }
 
 
@@ -50,7 +56,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.bind( news.get(position));
+        holder.bind( news.get(position),listener);
 //        holder.nameView.setText(actor.getName());
 //        Glide.with(context).load(actor.getAvatar()).into(holder.avatarView);
 //        holder.oscarView.setVisibility(actor.isHasOscar()? View.VISIBLE : View.GONE);
@@ -83,12 +89,18 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             date = itemView.findViewById(R.id.date);
         }
 
-        void bind(NewsItem news) {
+        void bind(final NewsItem news,final OnItemClickListener listener) {
             imageLoader.load(news.getImageUrl()).into(avatarView);
             news_category.setText(news.getCategory().getName());
             title.setText(news.getTitle());
             preview_text.setText(news.getPreviewText());
             date.setText(String.valueOf(news.getPublishDate()) );
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(news);
+                }
+            });
 
         }
     }

@@ -7,4 +7,6 @@
     <dimen name="oscar_height">@dimen/avatar_size</dimen>
     <dimen name="name_horizontal_padding">16dp</dimen>
     <dimen name="list_item_padding">5dp</dimen>
+    <dimen name="activity_horizontal_margin">5dp</dimen>
+    <dimen name="activity_vertical_margin">5dp</dimen>
 </resources>
