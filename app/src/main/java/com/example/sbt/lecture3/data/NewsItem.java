@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.Date;
 
-public class NewsItem  implements Parcelable {
+public class NewsItem implements Parcelable {
 
     private  String title;
     private  String imageUrl;
@@ -24,25 +24,6 @@ public class NewsItem  implements Parcelable {
         this.fullText = fullText;
     }
 
-    protected NewsItem(Parcel in) {
-        title = in.readString();
-        imageUrl = in.readString();
-        previewText = in.readString();
-        fullText = in.readString();
-    }
-
-
-    public static final Creator<NewsItem> CREATOR = new Creator<NewsItem>() {
-        @Override
-        public NewsItem createFromParcel(Parcel in) {
-            return new NewsItem(in);
-        }
-
-        @Override
-        public NewsItem[] newArray(int size) {
-            return new NewsItem[size];
-        }
-    };
 
     public String getTitle() {
         return title;
@@ -71,17 +52,40 @@ public class NewsItem  implements Parcelable {
 
     @Override
     public int describeContents() {
-        return hashCode();
+        return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(title);
-        parcel.writeString(imageUrl);
-        parcel.writeString(previewText);
-        parcel.writeString(fullText);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeString(this.imageUrl);
+        dest.writeParcelable(this.category, flags);
+        dest.writeLong(this.publishDate != null ? this.publishDate.getTime() : -1);
+        dest.writeString(this.previewText);
+        dest.writeString(this.fullText);
     }
 
+    protected NewsItem(Parcel in) {
+        this.title = in.readString();
+        this.imageUrl = in.readString();
+        this.category = in.readParcelable(Category.class.getClassLoader());
+        long tmpPublishDate = in.readLong();
+        this.publishDate = tmpPublishDate == -1 ? null : new Date(tmpPublishDate);
+        this.previewText = in.readString();
+        this.fullText = in.readString();
+    }
+
+    public static final Parcelable.Creator<NewsItem> CREATOR = new Parcelable.Creator<NewsItem>() {
+        @Override
+        public NewsItem createFromParcel(Parcel source) {
+            return new NewsItem(source);
+        }
+
+        @Override
+        public NewsItem[] newArray(int size) {
+            return new NewsItem[size];
+        }
+    };
 }
 
 

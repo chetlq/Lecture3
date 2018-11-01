@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(new NewsRecyclerAdapter(DataUtils.generateNews(), this, news -> {
             Log.d("TAG", "News " + news.getTitle());
-            intent.put .putExtra("key",news);
+            intent.putExtra("key",news);
             startActivity(intent);
         }));
 
